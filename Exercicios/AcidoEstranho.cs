@@ -33,20 +33,17 @@ namespace Exercicios
          */
         public static void Main()
         {
-            var referenciType = new ReferencieType(2);
-            var referencyTypeTwo = new ReferencieTypeTwo(2);
-            if (referenciType.PropReferenciType == referencyTypeTwo.PropReferenciTypeTwo)
-            {
-
-            }
-           
-            /*Console.WriteLine("Digite as suas letras");
+            //Se for maior do que 8 os 2 primeiros vão se conectar com os 2 ultimos da ultima fileira.
+            ////O terceiro vai se conectar com o segundo da proxima fileira e o quarto com o primeiro da proxima fileira
+            ///E assim em diante
+            
+            Console.WriteLine("Digite as suas letras");
             var receiveBase = Console.ReadLine();
             var calculate = receiveBase.Length;
             var maiorDoqueDoze = calculate / 4;
             switch (calculate)
             {
-                case < 4:
+                case <= 4:
                     string[,] receiveTape = new string[2, 2];
                     break;
                 case <= 8:
@@ -57,24 +54,12 @@ namespace Exercicios
                    break;
                 default:
                     break;
-            }*/
+            }
 
         }
-    }
-    class ReferencieType
-    {
-        public ReferencieType(int oi)
+        public static void FazerOcaulculo(string[,] receiveMatriz)
         {
-            PropReferenciType = oi;    
+
         }
-        public int PropReferenciType { get; set; }
-    }
-    class ReferencieTypeTwo
-    {
-        public ReferencieTypeTwo(int oi)
-        {
-            PropReferenciTypeTwo = oi;
-        }
-        public int PropReferenciTypeTwo { get; set; }
     }
 }
