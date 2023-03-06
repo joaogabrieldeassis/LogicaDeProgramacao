@@ -41,10 +41,11 @@ namespace Exercicios
             var receiveBase = Console.ReadLine();
             var calculate = receiveBase.Length;
             var maiorDoqueDoze = calculate / 4;
+            string[,] receiveTape;
             switch (calculate)
             {
                 case <= 4:
-                    string[,] receiveTape = new string[2, 2];
+                   receiveTape = new string[2, 2];
                     break;
                 case <= 8:
                     receiveTape = new string[2, 4];
@@ -53,13 +54,17 @@ namespace Exercicios
                     receiveTape = new string[maiorDoqueDoze, 4];
                    break;
                 default:
-                    break;
             }
-
+            AtribuirDadosAMatriz(receiveTape,receiveBase);
         }
-        public static void FazerOcaulculo(string[,] receiveMatriz)
+        public static void AtribuirDadosAMatriz(string[,] receiveMatriz,string receberAsLetras)
         {
-
+            receiveMatriz = receberAsLetras.Split("a").ToString();
+            foreach (var item in receiveMatriz)
+            {
+                Console.WriteLine(item);
+            }
+            
         }
     }
 }
