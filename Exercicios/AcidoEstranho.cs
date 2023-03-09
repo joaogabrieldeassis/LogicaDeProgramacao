@@ -37,34 +37,46 @@ namespace Exercicios
             ////O terceiro vai se conectar com o segundo da proxima fileira e o quarto com o primeiro da proxima fileira
             ///E assim em diante
             
-            Console.WriteLine("Digite as suas letras");
+
+           
+
+            Console.WriteLine("Digite Apenas as letras ' C F B S ' para o teste");
             var receiveBase = Console.ReadLine();
             var calculate = receiveBase.Length;
             var maiorDoqueDoze = calculate / 4;
-            string[,] receiveTape;
+            char[,] receiveTape;
             switch (calculate)
             {
                 case <= 4:
-                   receiveTape = new string[2, 2];
+                    receiveTape = new char[2, 2];
                     break;
                 case <= 8:
-                    receiveTape = new string[2, 4];
+                    receiveTape = new char[2, 4];
                     break;
                 case > 8:
-                    receiveTape = new string[maiorDoqueDoze, 4];
-                   break;
+                    receiveTape = new char[maiorDoqueDoze, 4];
+                    break;
                 default:
             }
-            AtribuirDadosAMatriz(receiveTape,receiveBase);
+            AtribuirDadosAMatriz(receiveTape, receiveBase, calculate);
         }
-        public static void AtribuirDadosAMatriz(string[,] receiveMatriz,string receberAsLetras)
-        {
-            receiveMatriz = receberAsLetras.Split("a").ToString();
-            foreach (var item in receiveMatriz)
-            {
-                Console.WriteLine(item);
+        public static void AtribuirDadosAMatriz(char[,] receiveMatriz, string receberAsLetras, int receiveCalculate)
+        {             
+            char[] quebrarNumeros = receberAsLetras.ToCharArray();
+            if (receiveCalculate >= 4)
+            {                
+                for (int coluna = receiveMatriz.Length; coluna != 0; coluna--)
+                {
+                    
+                }
             }
-            
+            for (int coluna = receiveMatriz.Length; coluna != 0; coluna--)
+            {
+                for (int linha = 0; linha < 2; linha++)
+                {
+
+                }
+            }
         }
     }
 }
