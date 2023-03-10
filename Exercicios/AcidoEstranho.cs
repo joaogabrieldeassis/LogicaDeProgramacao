@@ -56,23 +56,37 @@ namespace Exercicios
         public static void AtribuirDadosAMatriz(char[,] receiveMatriz, string receberAsLetras, int receiveCalculate)
         {             
             char[] quebrarNumeros = receberAsLetras.ToCharArray();
-            if (receiveCalculate >= 4)
+            if (receiveCalculate > 8)
             {                
-                for (int linha = receiveMatriz.Length; linha != 0; linha--)
+                for (int linha = receiveCalculate; linha != 0; linha--)
                 {
-                    for (int i = 0; i < 4; i++)
+                    for (int coluna = 4; coluna != 0; coluna--)
                     {
-                        receiveMatriz[linha, i] = Convert.ToChar(quebrarNumeros); 
+                        receiveMatriz[linha, coluna] = Convert.ToChar(quebrarNumeros); 
                     }
                 }
             }
-            for (int coluna = receiveMatriz.Length; coluna != 0; coluna--)
+            else if (receiveCalculate <= 4)
             {
-                for (int linha = 0; linha < 2; linha++)
+                for (int linha = 2; linha != 0; linha--)
                 {
-
+                    for (int coluna = 2; coluna != 0 ; coluna--)
+                    {
+                        receiveMatriz[linha, coluna] = Convert.ToChar(quebrarNumeros);
+                    }
                 }
             }
+            else if (receiveCalculate <= 8)
+            {
+                for (int linha = 2; linha != 0; linha--)
+                {
+                    for (int coluna = 4; coluna != 0; coluna--)
+                    {
+                        receiveMatriz[linha, coluna] = Convert.ToChar(quebrarNumeros);
+                    }
+                }
+            }
+            
         }
     }
 }
