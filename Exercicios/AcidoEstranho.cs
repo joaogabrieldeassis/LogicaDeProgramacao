@@ -32,14 +32,7 @@ namespace Exercicios
         CFCBSFFSBCCB                     5
          */
         public static void Main()
-        {
-            //Se for maior do que 8 os 2 primeiros vão se conectar com os 2 ultimos da ultima fileira.
-            ////O terceiro vai se conectar com o segundo da proxima fileira e o quarto com o primeiro da proxima fileira
-            ///E assim em diante
-            
-
-           
-
+        {            
             Console.WriteLine("Digite Apenas as letras ' C F B S ' para o teste");
             var receiveBase = Console.ReadLine();
             var calculate = receiveBase.Length;
@@ -65,9 +58,12 @@ namespace Exercicios
             char[] quebrarNumeros = receberAsLetras.ToCharArray();
             if (receiveCalculate >= 4)
             {                
-                for (int coluna = receiveMatriz.Length; coluna != 0; coluna--)
+                for (int linha = receiveMatriz.Length; linha != 0; linha--)
                 {
-                    
+                    for (int i = 0; i < 4; i++)
+                    {
+                        receiveMatriz[linha, i] = Convert.ToChar(quebrarNumeros); 
+                    }
                 }
             }
             for (int coluna = receiveMatriz.Length; coluna != 0; coluna--)
