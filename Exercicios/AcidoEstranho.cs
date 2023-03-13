@@ -32,11 +32,17 @@ namespace Exercicios
         CFCBSFFSBCCB                     5
          */
         public static void Main()
-        {            
+        {
+           
             Console.WriteLine("Digite Apenas as letras ' C F B S ' para o teste");
             var receiveBase = Console.ReadLine();
             var calculate = receiveBase.Length;
-            var maiorDoqueDoze = calculate / 4;
+            long remainder;
+            var maiorDoqueDoze = Math.DivRem(calculate, 4, out remainder);
+            if (remainder != 0)
+            {
+                calculate++;
+            }
             char[,] receiveTape;
             switch (calculate)
             {
@@ -46,19 +52,22 @@ namespace Exercicios
                 case <= 8:
                     receiveTape = new char[2, 4];
                     break;
-                case > 8:
+                case <= 11 :
+                        receiveTape = new char[3, 4];
+                    break;
+                case >= 12:
                     receiveTape = new char[maiorDoqueDoze, 4];
                     break;
                 default:
             }
-            AtribuirDadosAMatriz(receiveTape, receiveBase, calculate);
+            AtribuirDadosAMatriz(receiveTape, receiveBase, maiorDoqueDoze,calculate);
         }
-        public static void AtribuirDadosAMatriz(char[,] receiveMatriz, string receberAsLetras, int receiveCalculate)
+        public static void AtribuirDadosAMatriz(char[,] receiveMatriz, string receberAsLetras, long receiveMaiorQueDoze, int calculate)
         {             
             char[] quebrarNumeros = receberAsLetras.ToCharArray();
-            if (receiveCalculate > 8)
+            if (calculate > 8)
             {                
-                for (int linha = receiveCalculate; linha != 0; linha--)
+                for (long linha = receiveMaiorQueDoze; linha != 0; linha--)
                 {
                     for (int coluna = 4; coluna != 0; coluna--)
                     {
@@ -66,7 +75,7 @@ namespace Exercicios
                     }
                 }
             }
-            else if (receiveCalculate <= 4)
+            else if (calculate <= 4)
             {
                 for (int linha = 2; linha != 0; linha--)
                 {
@@ -76,7 +85,7 @@ namespace Exercicios
                     }
                 }
             }
-            else if (receiveCalculate <= 8)
+            else if (calculate <= 8)
             {
                 for (int linha = 2; linha != 0; linha--)
                 {
