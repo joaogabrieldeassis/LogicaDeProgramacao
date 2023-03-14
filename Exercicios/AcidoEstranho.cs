@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.NetworkInformation;
@@ -32,35 +33,32 @@ namespace Exercicios
         CFCBSFFSBCCB                     5
          */
         public static void Main()
-        {
-           
+        {            
+            
+            
             Console.WriteLine("Digite Apenas as letras ' C F B S ' para o teste");
             var receiveBase = Console.ReadLine();
-            var calculate = receiveBase.Length;
-            long remainder;
-            var maiorDoqueDoze = Math.DivRem(calculate, 4, out remainder);
-            if (remainder != 0)
+            var caulcular = receiveBase.Length;
+            var maiorDoqueDoze = caulcular / 4;
+            if (maiorDoqueDoze != 0)
             {
-                calculate++;
+                maiorDoqueDoze++;
             }
             char[,] receiveTape;
-            switch (calculate)
+            switch (caulcular)
             {
                 case <= 4:
                     receiveTape = new char[2, 2];
                     break;
                 case <= 8:
                     receiveTape = new char[2, 4];
-                    break;
-                case <= 11 :
-                        receiveTape = new char[3, 4];
-                    break;
-                case >= 12:
+                    break;               
+                case > 8:
                     receiveTape = new char[maiorDoqueDoze, 4];
                     break;
                 default:
             }
-            AtribuirDadosAMatriz(receiveTape, receiveBase, maiorDoqueDoze,calculate);
+            AtribuirDadosAMatriz(receiveTape, receiveBase, maiorDoqueDoze, caulcular);
         }
         public static void AtribuirDadosAMatriz(char[,] receiveMatriz, string receberAsLetras, long receiveMaiorQueDoze, int calculate)
         {             
