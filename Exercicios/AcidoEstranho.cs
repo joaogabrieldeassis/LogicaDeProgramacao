@@ -33,9 +33,7 @@ namespace Exercicios
         CFCBSFFSBCCB                     5
          */
         public static void Main()
-        {            
-            
-            
+        {                                   
             Console.WriteLine("Digite Apenas as letras ' C F B S ' para o teste");
             var receiveBase = Console.ReadLine();
             var caulcular = receiveBase.Length;
@@ -63,13 +61,16 @@ namespace Exercicios
         public static void AtribuirDadosAMatriz(char[,] receiveMatriz, string receberAsLetras, long receiveMaiorQueDoze, int calculate)
         {             
             char[] quebrarNumeros = receberAsLetras.ToCharArray();
+            long i = 0, linha = 0,trocarFileira = 0;
             if (calculate > 8)
             {                
-                for (long linha = receiveMaiorQueDoze; linha != 0; linha--)
+                for (linha = receiveMaiorQueDoze; linha != 0; linha--)
                 {
-                    for (int coluna = 4; coluna != 0; coluna--)
+
+                    for (int coluna = 4; coluna != 0; coluna--,i+=+1)
                     {
-                        receiveMatriz[linha, coluna] = Convert.ToChar(quebrarNumeros); 
+                        receiveMatriz[linha, coluna] = quebrarNumeros[i];
+                             
                     }
                 }
             }
@@ -79,7 +80,7 @@ namespace Exercicios
                 {
                     for (int coluna = 2; coluna != 0 ; coluna--)
                     {
-                        receiveMatriz[linha, coluna] = Convert.ToChar(quebrarNumeros);
+                        receiveMatriz[linha, coluna] = quebrarNumeros[coluna];
                     }
                 }
             }
