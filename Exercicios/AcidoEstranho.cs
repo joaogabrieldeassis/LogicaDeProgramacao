@@ -66,12 +66,25 @@ namespace Exercicios
             {                
                 for (linha = receiveMaiorQueDoze; linha != 0; linha--)
                 {
-
-                    for (int coluna = 4; coluna != 0; coluna--,i+=+1)
+                    if (trocarFileira == 0)
                     {
-                        receiveMatriz[linha, coluna] = quebrarNumeros[i];
-                             
+                        trocarFileira++;
+                        for (int coluna = 0; coluna != 4; coluna++, i += +1)
+                        {
+                            receiveMatriz[linha, coluna] = quebrarNumeros[i];
+
+                        }
                     }
+                    else
+                    {
+                        trocarFileira = 0;
+                        for (int coluna = 4; coluna != 0; coluna--, i += +1)
+                        {
+                            receiveMatriz[linha, coluna] = quebrarNumeros[i];
+
+                        }
+                    }
+                    
                 }
             }
             else if (calculate <= 4)
