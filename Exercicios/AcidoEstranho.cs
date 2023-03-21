@@ -33,14 +33,15 @@ namespace Exercicios
         CFCBSFFSBCCB                     5
          */
         public static void Main()
-        {                                   
+        {                             
             Console.WriteLine("Digite Apenas as letras ' C F B S ' para o teste");
             var receiveBase = Console.ReadLine();
             var caulcular = receiveBase.Length;
-            var maiorDoqueDoze = caulcular / 4;
+            decimal maiorDoqueDoze = caulcular % 4;
+            int definirLinhaDaMatriz = caulcular/4;
             if (maiorDoqueDoze != 0)
             {
-                maiorDoqueDoze++;
+                definirLinhaDaMatriz ++;
             }
             char[,] receiveTape;
             switch (caulcular)
@@ -52,19 +53,19 @@ namespace Exercicios
                     receiveTape = new char[2, 4];
                     break;               
                 case > 8:
-                    receiveTape = new char[maiorDoqueDoze, 4];
+                    receiveTape = new char[definirLinhaDaMatriz, 4];
                     break;
                 default:
             }
-            AtribuirDadosAMatriz(receiveTape, receiveBase, maiorDoqueDoze, caulcular);
+            AtribuirDadosAMatriz(receiveTape, receiveBase, definirLinhaDaMatriz, caulcular);
         }
         public static void AtribuirDadosAMatriz(char[,] receiveMatriz, string receberAsLetras, long receiveMaiorQueDoze, int calculate)
         {             
             char[] quebrarNumeros = receberAsLetras.ToCharArray();
-            long i = 0, linha = 0,trocarFileira = 0;
+            long i = 0,trocarFileira = 0;
             if (calculate > 8)
             {                
-                for (linha = receiveMaiorQueDoze; linha != 0; linha--)
+                for (long linha = receiveMaiorQueDoze-1; linha != 0; linha--)
                 {
                     if (trocarFileira == 0)
                     {
@@ -78,7 +79,7 @@ namespace Exercicios
                     else
                     {
                         trocarFileira = 0;
-                        for (int coluna = 4; coluna != 0; coluna--, i += +1)
+                        for (int coluna = 3; coluna != 0; coluna--, i += +1)
                         {
                             receiveMatriz[linha, coluna] = quebrarNumeros[i];
 
@@ -89,7 +90,7 @@ namespace Exercicios
             }
             else if (calculate <= 4)
             {
-                for (int linha = 2; linha != 0; linha--)
+                for (long linha = 2; linha != 0; linha--)
                 {
                     for (int coluna = 2; coluna != 0 ; coluna--)
                     {
@@ -99,7 +100,7 @@ namespace Exercicios
             }
             else if (calculate <= 8)
             {
-                for (int linha = 2; linha != 0; linha--)
+                for (long linha = 2; linha != 0; linha--)
                 {
                     for (int coluna = 4; coluna != 0; coluna--)
                     {
