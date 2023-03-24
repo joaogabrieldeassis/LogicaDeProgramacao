@@ -33,7 +33,8 @@ namespace Exercicios
         CFCBSFFSBCCB                     5
          */
         public static void Main()
-        {                             
+        {
+            
             Console.WriteLine("Digite Apenas as letras ' C F B S ' para o teste");
             var receiveBase = Console.ReadLine();
             var caulcular = receiveBase.Length;
@@ -57,20 +58,20 @@ namespace Exercicios
                     break;
                 default:
             }
-            AtribuirDadosAMatriz(receiveTape, receiveBase, definirLinhaDaMatriz, caulcular);
+           receiveTape = AtribuirDadosAMatriz(receiveTape, receiveBase, definirLinhaDaMatriz, caulcular);
         }
-        public static void AtribuirDadosAMatriz(char[,] receiveMatriz, string receberAsLetras, long receiveMaiorQueDoze, int calculate)
+        public static char[,] AtribuirDadosAMatriz(char[,] receiveMatriz, string receberAsLetras, Int32 receiveMaiorQueDoze, int calculate)
         {             
             char[] quebrarNumeros = receberAsLetras.ToCharArray();
-            long i = 0,trocarFileira = 0;
+            byte i = 0, trocarFileira = 0;
             if (calculate > 8)
             {                
-                for (long linha = receiveMaiorQueDoze-1; linha != 0; linha--)
+                for (Int32 linha = receiveMaiorQueDoze-1; linha >= 0; linha--)
                 {
                     if (trocarFileira == 0)
                     {
                         trocarFileira++;
-                        for (int coluna = 0; coluna != 4; coluna++, i += +1)
+                        for (Int16 coluna = 0; coluna != 4; coluna++, i += +1)
                         {
                             receiveMatriz[linha, coluna] = quebrarNumeros[i];
 
@@ -79,7 +80,7 @@ namespace Exercicios
                     else
                     {
                         trocarFileira = 0;
-                        for (int coluna = 3; coluna != 0; coluna--, i += +1)
+                        for (Int16 coluna = 3; coluna >= 0; coluna--, i += +1)
                         {
                             receiveMatriz[linha, coluna] = quebrarNumeros[i];
 
@@ -90,9 +91,9 @@ namespace Exercicios
             }
             else if (calculate <= 4)
             {
-                for (long linha = 2; linha != 0; linha--)
+                for (Int16 linha = 2; linha != 0; linha--)
                 {
-                    for (int coluna = 2; coluna != 0 ; coluna--)
+                    for (Int16 coluna = 2; coluna != 0 ; coluna--)
                     {
                         receiveMatriz[linha, coluna] = quebrarNumeros[coluna];
                     }
@@ -100,15 +101,15 @@ namespace Exercicios
             }
             else if (calculate <= 8)
             {
-                for (long linha = 2; linha != 0; linha--)
+                for (Int16 linha = 2; linha != 0; linha--)
                 {
-                    for (int coluna = 4; coluna != 0; coluna--)
+                    for (Int16 coluna = 4; coluna != 0; coluna--)
                     {
                         receiveMatriz[linha, coluna] = Convert.ToChar(quebrarNumeros);
                     }
                 }
             }
-            
+            return receiveMatriz;
         }
     }
 }
