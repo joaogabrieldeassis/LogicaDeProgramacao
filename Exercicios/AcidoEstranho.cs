@@ -59,8 +59,9 @@ namespace Exercicios
                 default:
             }
            receiveTape = AtribuirDadosAMatriz(receiveTape, receiveBase, definirLinhaDaMatriz, caulcular);
+           FazerCalculo(receiveTape);
         }
-        public static char[,] AtribuirDadosAMatriz(char[,] receiveMatriz, string receberAsLetras, Int32 receiveMaiorQueDoze, int calculate)
+        public static char[,] AtribuirDadosAMatriz(char[,] receiveMatriz, string receberAsLetras, Int32 receiveMaiorQueDoze, Int32 calculate)
         {             
             char[] quebrarNumeros = receberAsLetras.ToCharArray();
             byte i = 0, trocarFileira = 0;
@@ -74,7 +75,6 @@ namespace Exercicios
                         for (Int16 coluna = 0; coluna != 4; coluna++, i += +1)
                         {
                             receiveMatriz[linha, coluna] = quebrarNumeros[i];
-
                         }
                     }
                     else
@@ -83,7 +83,6 @@ namespace Exercicios
                         for (Int16 coluna = 3; coluna >= 0; coluna--, i += +1)
                         {
                             receiveMatriz[linha, coluna] = quebrarNumeros[i];
-
                         }
                     }
                     
@@ -110,6 +109,10 @@ namespace Exercicios
                 }
             }
             return receiveMatriz;
+        }
+        public static void FazerCalculo(char[,] receberMatrizComOsDadosAtribuidos)
+        {
+
         }
     }
 }
