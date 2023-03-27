@@ -90,11 +90,17 @@ namespace Exercicios
             }
             else if (calculate <= 4)
             {
-                for (Int16 linha = 2; linha != 0; linha--)
+                for (Int16 linha = 1; linha >= 0; linha--)
                 {
-                    for (Int16 coluna = 2; coluna != 0 ; coluna--)
+                    for (Int16 coluna = 1; coluna >= 0 ; coluna--, i += +1)
                     {
-                        receiveMatriz[linha, coluna] = quebrarNumeros[coluna];
+                        if (quebrarNumeros[i] == null || quebrarNumeros[i] == 0)                        
+                            break;                        
+                        else
+                        {
+                            receiveMatriz[linha, coluna] = quebrarNumeros[i];
+                        }
+                        
                     }
                 }
             }
@@ -110,9 +116,19 @@ namespace Exercicios
             }
             return receiveMatriz;
         }
-        public static void FazerCalculo(char[,] receberMatrizComOsDadosAtribuidos)
+        public static string FazerCalculo(char[,] receberMatrizComOsDadosAtribuidos)
         {
+            if (receberMatrizComOsDadosAtribuidos.Length <= 8)
+            {
+                double dividirMatriz = receberMatrizComOsDadosAtribuidos.Length / 2;
+                Int16 receberParteDeBaixoDaMatriz = (short)Math.Ceiling(dividirMatriz);
+                Int16 recberParteDeCimaDaMatriz = (short)(receberMatrizComOsDadosAtribuidos.Length - receberParteDeBaixoDaMatriz);               
+            }
+            else
+            {
 
+            }
+            return "";
         }
     }
 }
