@@ -9,12 +9,7 @@ using System.Threading.Tasks;
 namespace Exercicios
 {
     public class AcidoEstranho
-    {
-        public AcidoEstranho(string criacao)
-        {
-            Criacao = criacao;
-        }
-    
+    {       
         /*
          Um tipo estranho de ácido ribonucleico (popularmente conhecido como RNA) foi descoberto. Os cientistas, por falta de criatividade, batizaram a descoberta de ácido ribonucléico alienígena (RNAA). Semelhante ao RNA que conhecemos, o RNAA é uma fita composta por várias bases. As bases são CFBS e podem se conectar em pares. Os únicos pares possíveis estão entre as bases B e S e as bases C e F.
         Enquanto ativo, o RNAA dobra vários intervalos da fita em torno de si, fazendo conexões entre suas bases. Os cientistas perceberam que:
@@ -38,41 +33,40 @@ namespace Exercicios
         CFCBSFFSBCCB                     5
          */
         public static void Main()
-        {           
+        {
             Console.WriteLine("Digite Apenas as letras ' C F B S ' para o teste");
             var receiveBase = Console.ReadLine();
-            var caulcular = receiveBase.Length;
-            decimal maiorDoqueDoze = caulcular % 4;
-            int definirLinhaDaMatriz = caulcular/4;
+            var tamanhoDaString = receiveBase.Length;
+            decimal maiorDoqueDoze = tamanhoDaString % 4;
+            int definirLinhaDaMatriz = tamanhoDaString / 4;
             if (maiorDoqueDoze != 0)
             {
-                definirLinhaDaMatriz ++;
+                definirLinhaDaMatriz++;
             }
             char[,] receiveTape;
-            switch (caulcular)
+            switch (tamanhoDaString)
             {
                 case <= 4:
                     receiveTape = new char[2, 2];
                     break;
                 case <= 8:
                     receiveTape = new char[2, 4];
-                    break;               
+                    break;
                 case > 8:
                     receiveTape = new char[definirLinhaDaMatriz, 4];
                     break;
                 default:
             }
-           receiveTape = AtribuirDadosAMatriz(receiveTape, receiveBase, definirLinhaDaMatriz, caulcular);
-           FazerCalculo(receiveTape);
-           FazerCalculo(receiveTape);
+            char[,] receberMatriz = AtribuirDadosAMatriz(receiveTape, receiveBase, definirLinhaDaMatriz, tamanhoDaString);
+            FazerCalculo(receberMatriz);
         }
         public static char[,] AtribuirDadosAMatriz(char[,] receiveMatriz, string receberAsLetras, Int32 receiveMaiorQueDoze, Int32 calculate)
-        {             
+        {
             char[] quebrarNumeros = receberAsLetras.ToCharArray();
             byte i = 0, trocarFileira = 0;
             if (calculate > 8)
-            {                
-                for (Int32 linha = receiveMaiorQueDoze-1; linha >= 0; linha--)
+            {
+                for (Int32 linha = receiveMaiorQueDoze - 1; linha >= 0; linha--)
                 {
                     if (trocarFileira == 0)
                     {
@@ -90,22 +84,19 @@ namespace Exercicios
                             receiveMatriz[linha, coluna] = quebrarNumeros[i];
                         }
                     }
-                    
                 }
             }
             else if (calculate <= 4)
             {
-                for (Int16 linha = 1; linha >= 0; linha--)
+                i = (byte)receberAsLetras.Length;
+                i--;
+                for (Int16 linha = 0; linha <= 1; linha++)
                 {
-                    for (Int16 coluna = 1; coluna >= 0 ; coluna--, i += +1)
+                    for (Int16 coluna = 0; coluna <= 1; coluna++, i--)
                     {
-                        if (quebrarNumeros[i] == null || quebrarNumeros[i] == 0)                        
-                            break;                        
-                        else
-                        {
-                            receiveMatriz[linha, coluna] = quebrarNumeros[i];
-                        }
-                        
+                        receiveMatriz[linha, coluna] = quebrarNumeros[i];
+                        if (i+1 == calculate)
+                            break;
                     }
                 }
             }
@@ -127,15 +118,18 @@ namespace Exercicios
             {
                 double dividirMatriz = receberMatrizComOsDadosAtribuidos.Length / 2;
                 Int16 receberParteDeBaixoDaMatriz = (short)Math.Ceiling(dividirMatriz);
-                Int16 recberParteDeCimaDaMatriz = (short)(receberMatrizComOsDadosAtribuidos.Length - receberParteDeBaixoDaMatriz);               
+                Int16 receberParteDeCimaDaMatriz = (short)(receberMatrizComOsDadosAtribuidos.Length - receberParteDeBaixoDaMatriz);
+                for (int i = 0; i < receberParteDeBaixoDaMatriz; i++)
+                {
+
+                }
             }
             else
             {
 
             }
             return "";
-        }
-        public string Criacao { get; set; }
+        }       
     }
 }
 
