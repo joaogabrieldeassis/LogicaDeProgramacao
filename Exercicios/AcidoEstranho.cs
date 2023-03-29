@@ -10,6 +10,11 @@ namespace Exercicios
 {
     public class AcidoEstranho
     {
+        public AcidoEstranho(string criacao)
+        {
+            Criacao = criacao;
+        }
+    
         /*
          Um tipo estranho de ácido ribonucleico (popularmente conhecido como RNA) foi descoberto. Os cientistas, por falta de criatividade, batizaram a descoberta de ácido ribonucléico alienígena (RNAA). Semelhante ao RNA que conhecemos, o RNAA é uma fita composta por várias bases. As bases são CFBS e podem se conectar em pares. Os únicos pares possíveis estão entre as bases B e S e as bases C e F.
         Enquanto ativo, o RNAA dobra vários intervalos da fita em torno de si, fazendo conexões entre suas bases. Os cientistas perceberam que:
@@ -33,8 +38,7 @@ namespace Exercicios
         CFCBSFFSBCCB                     5
          */
         public static void Main()
-        {
-            
+        {           
             Console.WriteLine("Digite Apenas as letras ' C F B S ' para o teste");
             var receiveBase = Console.ReadLine();
             var caulcular = receiveBase.Length;
@@ -59,6 +63,7 @@ namespace Exercicios
                 default:
             }
            receiveTape = AtribuirDadosAMatriz(receiveTape, receiveBase, definirLinhaDaMatriz, caulcular);
+           FazerCalculo(receiveTape);
            FazerCalculo(receiveTape);
         }
         public static char[,] AtribuirDadosAMatriz(char[,] receiveMatriz, string receberAsLetras, Int32 receiveMaiorQueDoze, Int32 calculate)
@@ -130,5 +135,7 @@ namespace Exercicios
             }
             return "";
         }
+        public string Criacao { get; set; }
     }
 }
+
