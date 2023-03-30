@@ -60,44 +60,60 @@ namespace Exercicios
             char[,] receberMatriz = AtribuirDadosAMatriz(receiveTape, receiveBase, definirLinhaDaMatriz, tamanhoDaString);
             FazerCalculo(receberMatriz);
         }
-        public static char[,] AtribuirDadosAMatriz(char[,] receiveMatriz, string receberAsLetras, Int32 receiveMaiorQueDoze, Int32 calculate)
+        public static char[,] AtribuirDadosAMatriz(char[,] receiveMatriz, string receberAsLetras, Int32 receberAdefinicaoDaLinhaDaMatriz, Int32 calculate)
         {
             char[] quebrarNumeros = receberAsLetras.ToCharArray();
-            byte i = 0, trocarFileira = 0;
+            byte indexDoArrayDeCaracters = 0, trocarFileira = 0;
             if (calculate > 8)
             {
-                for (Int32 linha = receiveMaiorQueDoze - 1; linha >= 0; linha--)
+                for (Int32 linha = receberAdefinicaoDaLinhaDaMatriz - 1; linha >= 0; linha--)
                 {
                     if (trocarFileira == 0)
                     {
                         trocarFileira++;
-                        for (Int16 coluna = 0; coluna != 4; coluna++, i += +1)
+                        for (Int16 coluna = 0; coluna != 4; coluna++, indexDoArrayDeCaracters += +1)
                         {
-                            receiveMatriz[linha, coluna] = quebrarNumeros[i];
+                            receiveMatriz[linha, coluna] = quebrarNumeros[indexDoArrayDeCaracters];
                         }
                     }
                     else
                     {
                         trocarFileira = 0;
-                        for (Int16 coluna = 3; coluna >= 0; coluna--, i += +1)
+                        for (Int16 coluna = 3; coluna >= 0; coluna--, indexDoArrayDeCaracters += +1)
                         {
-                            receiveMatriz[linha, coluna] = quebrarNumeros[i];
+                            receiveMatriz[linha, coluna] = quebrarNumeros[indexDoArrayDeCaracters];
                         }
                     }
                 }
             }
             else if (calculate <= 4)
             {
-                i = (byte)receberAsLetras.Length;
-                i--;
-                for (Int16 linha = 0; linha <= 1; linha++)
+                indexDoArrayDeCaracters = (byte)receberAsLetras.Length;
+                indexDoArrayDeCaracters--;
+                byte mudarAposicaoDaMatriz = 0;
+                for (Int16 linhaDaMatriz = 0; linhaDaMatriz <= 1; linhaDaMatriz++)
                 {
-                    for (Int16 coluna = 0; coluna <= 1; coluna++, i--)
+                    if (mudarAposicaoDaMatriz == 1)
                     {
-                        receiveMatriz[linha, coluna] = quebrarNumeros[i];
-                        if (i+1 == calculate)
-                            break;
+                        mudarAposicaoDaMatriz=0;
+                        for (Int16 coluna = 1; coluna >= 0; coluna--, indexDoArrayDeCaracters--)
+                        {
+                            receiveMatriz[linhaDaMatriz, coluna] = quebrarNumeros[indexDoArrayDeCaracters];
+                            if (indexDoArrayDeCaracters == 0)
+                                break;
+                        }
                     }
+                    else
+                    {
+                        mudarAposicaoDaMatriz = 1;
+                        for (int coluna = 0; coluna <= 1; coluna++,indexDoArrayDeCaracters--)
+                        {
+                            receiveMatriz[linhaDaMatriz, coluna] = quebrarNumeros[indexDoArrayDeCaracters];
+                            if (indexDoArrayDeCaracters == 0)
+                                break;
+                        }
+                    }
+                    
                 }
             }
             else if (calculate <= 8)
