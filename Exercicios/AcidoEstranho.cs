@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace Exercicios
 {
     public class AcidoEstranho
-    {       
+    {
         /*
          Um tipo estranho de ácido ribonucleico (popularmente conhecido como RNA) foi descoberto. Os cientistas, por falta de criatividade, batizaram a descoberta de ácido ribonucléico alienígena (RNAA). Semelhante ao RNA que conhecemos, o RNAA é uma fita composta por várias bases. As bases são CFBS e podem se conectar em pares. Os únicos pares possíveis estão entre as bases B e S e as bases C e F.
         Enquanto ativo, o RNAA dobra vários intervalos da fita em torno de si, fazendo conexões entre suas bases. Os cientistas perceberam que:
@@ -95,7 +95,7 @@ namespace Exercicios
                 {
                     if (mudarAposicaoDaMatriz == 1)
                     {
-                        mudarAposicaoDaMatriz=0;
+                        mudarAposicaoDaMatriz = 0;
                         for (Int16 coluna = 1; coluna >= 0; coluna--, indexDoArrayDeCaracters--)
                         {
                             receiveMatriz[linhaDaMatriz, coluna] = quebrarNumeros[indexDoArrayDeCaracters];
@@ -106,23 +106,38 @@ namespace Exercicios
                     else
                     {
                         mudarAposicaoDaMatriz = 1;
-                        for (int coluna = 0; coluna <= 1; coluna++,indexDoArrayDeCaracters--)
+                        for (int coluna = 0; coluna <= 1; coluna++, indexDoArrayDeCaracters--)
                         {
                             receiveMatriz[linhaDaMatriz, coluna] = quebrarNumeros[indexDoArrayDeCaracters];
                             if (indexDoArrayDeCaracters == 0)
                                 break;
                         }
                     }
-                    
+
                 }
             }
             else if (calculate <= 8)
             {
-                for (Int16 linha = 2; linha != 0; linha--)
+                indexDoArrayDeCaracters = (byte)receberAsLetras.Length;
+                indexDoArrayDeCaracters--;
+                byte definirLinhaDaMatriz = 0;
+                for (Int16 linha = 1; linha != 0; linha--)
                 {
-                    for (Int16 coluna = 4; coluna != 0; coluna--)
+                    if (definirLinhaDaMatriz == 1)
                     {
-                        receiveMatriz[linha, coluna] = Convert.ToChar(quebrarNumeros);
+                        definirLinhaDaMatriz = 0;
+                        for (Int16 coluna = 3; coluna >= 0; coluna--, indexDoArrayDeCaracters--)
+                        {
+                            receiveMatriz[linha, coluna] = Convert.ToChar(quebrarNumeros);
+                        }
+                    }
+                    else
+                    {
+                        definirLinhaDaMatriz = 1;
+                        for (Int16 coluna = 0; coluna >= 3; coluna++, indexDoArrayDeCaracters--)
+                        {
+                            receiveMatriz[linha, coluna] = quebrarNumeros[indexDoArrayDeCaracters];
+                        }
                     }
                 }
             }
@@ -145,7 +160,7 @@ namespace Exercicios
 
             }
             return "";
-        }       
+        }
     }
 }
 
