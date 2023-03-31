@@ -60,11 +60,11 @@ namespace Exercicios
             char[,] receberMatriz = AtribuirDadosAMatriz(receiveTape, receiveBase, definirLinhaDaMatriz, tamanhoDaString);
             FazerCalculo(receberMatriz);
         }
-        public static char[,] AtribuirDadosAMatriz(char[,] receiveMatriz, string receberAsLetras, Int32 receberAdefinicaoDaLinhaDaMatriz, Int32 calculate)
+        public static char[,] AtribuirDadosAMatriz(char[,] receiveMatriz, string receberAsLetras, Int32 receberAdefinicaoDaLinhaDaMatriz, Int32 receberOtamanhoDaString)
         {
             char[] quebrarNumeros = receberAsLetras.ToCharArray();
             byte indexDoArrayDeCaracters = 0, trocarFileira = 0;
-            if (calculate > 8)
+            if (receberOtamanhoDaString > 8)
             {
                 for (Int32 linha = receberAdefinicaoDaLinhaDaMatriz - 1; linha >= 0; linha--)
                 {
@@ -86,7 +86,7 @@ namespace Exercicios
                     }
                 }
             }
-            else if (calculate <= 4)
+            else if (receberOtamanhoDaString <= 4)
             {
                 indexDoArrayDeCaracters = (byte)receberAsLetras.Length;
                 indexDoArrayDeCaracters--;
@@ -116,27 +116,29 @@ namespace Exercicios
 
                 }
             }
-            else if (calculate <= 8)
-            {
-                indexDoArrayDeCaracters = (byte)receberAsLetras.Length;
-                indexDoArrayDeCaracters--;
+            else if (receberOtamanhoDaString <= 8)
+            {                
                 byte definirLinhaDaMatriz = 0;
-                for (Int16 linha = 1; linha != 0; linha--)
+                for (Int16 linha = 1; linha >= 0; linha--)
                 {
                     if (definirLinhaDaMatriz == 1)
                     {
                         definirLinhaDaMatriz = 0;
-                        for (Int16 coluna = 3; coluna >= 0; coluna--, indexDoArrayDeCaracters--)
+                        for (Int16 coluna = 0; coluna <= 3; coluna++, indexDoArrayDeCaracters++)
                         {
-                            receiveMatriz[linha, coluna] = Convert.ToChar(quebrarNumeros);
+                            receiveMatriz[linha, coluna] = quebrarNumeros[indexDoArrayDeCaracters];
+                            if (indexDoArrayDeCaracters == receberOtamanhoDaString)
+                                break;
                         }
                     }
                     else
                     {
                         definirLinhaDaMatriz = 1;
-                        for (Int16 coluna = 0; coluna >= 3; coluna++, indexDoArrayDeCaracters--)
+                        for (Int16 coluna = 0; coluna <= 3; coluna++, indexDoArrayDeCaracters++)
                         {
                             receiveMatriz[linha, coluna] = quebrarNumeros[indexDoArrayDeCaracters];
+                            if (indexDoArrayDeCaracters == receberOtamanhoDaString)
+                                break;
                         }
                     }
                 }
