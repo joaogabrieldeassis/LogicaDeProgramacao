@@ -57,10 +57,10 @@ namespace Exercicios
                     break;
                 default:
             }
-            char[,] receberMatriz = AtribuirDadosAMatriz(receiveTape, receiveBase, definirLinhaDaMatriz, tamanhoDaString);
-            FazerCalculo(receberMatriz);
+            AtribuirDadosAMatriz(receiveTape, receiveBase, definirLinhaDaMatriz, tamanhoDaString);
+            
         }
-        public static char[,] AtribuirDadosAMatriz(char[,] receiveMatriz, string receberAsLetras, Int32 receberAdefinicaoDaLinhaDaMatriz, Int32 receberOtamanhoDaString)
+        public static void AtribuirDadosAMatriz(char[,] receiveMatriz, string receberAsLetras, Int32 receberAdefinicaoDaLinhaDaMatriz, Int32 receberOtamanhoDaString)
         {
             char[] quebrarNumeros = receberAsLetras.ToCharArray();
             byte indexDoArrayDeCaracters = 0, trocarFileira = 0;
@@ -117,44 +117,48 @@ namespace Exercicios
                 }
             }
             else if (receberOtamanhoDaString <= 8)
-            {                
+            {
+                indexDoArrayDeCaracters = (byte)receberAsLetras.Length;
+                indexDoArrayDeCaracters--;
                 byte definirLinhaDaMatriz = 0;
-                for (Int16 linha = 1; linha >= 0; linha--)
+                for (Int16 linha = 0; linha <= 2; linha++)
                 {
                     if (definirLinhaDaMatriz == 1)
                     {
                         definirLinhaDaMatriz = 0;
-                        for (Int16 coluna = 0; coluna <= 3; coluna++, indexDoArrayDeCaracters++)
+                        for (Int16 coluna = 3; coluna >= 0; coluna--, indexDoArrayDeCaracters--)
                         {
                             receiveMatriz[linha, coluna] = quebrarNumeros[indexDoArrayDeCaracters];
-                            if (indexDoArrayDeCaracters == receberOtamanhoDaString)
+                            if (indexDoArrayDeCaracters == receberOtamanhoDaString || indexDoArrayDeCaracters == 0)
                                 break;
                         }
                     }
                     else
                     {
                         definirLinhaDaMatriz = 1;
-                        for (Int16 coluna = 0; coluna <= 3; coluna++, indexDoArrayDeCaracters++)
+                        for (Int16 coluna = 0; coluna <= 3; coluna++, indexDoArrayDeCaracters--)
                         {
                             receiveMatriz[linha, coluna] = quebrarNumeros[indexDoArrayDeCaracters];
-                            if (indexDoArrayDeCaracters == receberOtamanhoDaString)
+                            if (indexDoArrayDeCaracters == receberOtamanhoDaString || indexDoArrayDeCaracters == 0)
                                 break;
                         }
                     }
                 }
-            }
-            return receiveMatriz;
+            }            
+            FazerCalculo(receiveMatriz);
         }
         public static string FazerCalculo(char[,] receberMatrizComOsDadosAtribuidos)
         {
             if (receberMatrizComOsDadosAtribuidos.Length <= 8)
             {
-                double dividirMatriz = receberMatrizComOsDadosAtribuidos.Length / 2;
-                Int16 receberParteDeBaixoDaMatriz = (short)Math.Ceiling(dividirMatriz);
-                Int16 receberParteDeCimaDaMatriz = (short)(receberMatrizComOsDadosAtribuidos.Length - receberParteDeBaixoDaMatriz);
-                for (int i = 0; i < receberParteDeBaixoDaMatriz; i++)
+                double dividirMatrizNoMeio = receberMatrizComOsDadosAtribuidos.Length / 2;
+                Int16 receberAdivisaoDaMatriz = (short)Math.Ceiling(dividirMatrizNoMeio);                
+                for (int percorrerLinhaUmDaMatriz = 0; percorrerLinhaUmDaMatriz <= receberAdivisaoDaMatriz; percorrerLinhaUmDaMatriz++)
                 {
+                    for (int percorrerLinhaDoisDaMatriz = 0; percorrerLinhaDoisDaMatriz <= receberAdivisaoDaMatriz; percorrerLinhaDoisDaMatriz++)
+                    {
 
+                    }
                 }
             }
             else
