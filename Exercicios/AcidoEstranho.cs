@@ -58,7 +58,7 @@ namespace Exercicios
                 default:
             }
             AtribuirDadosAMatriz(receiveTape, receiveBase, definirLinhaDaMatriz, tamanhoDaString);
-            
+
         }
         public static void AtribuirDadosAMatriz(char[,] receiveMatriz, string receberAsLetras, Int32 receberAdefinicaoDaLinhaDaMatriz, Int32 receberOtamanhoDaString)
         {
@@ -144,25 +144,31 @@ namespace Exercicios
                         }
                     }
                 }
-            }            
+            }
             FazerCalculo(receiveMatriz);
         }
-        public static string FazerCalculo(char[,] receberMatrizComOsDadosAtribuidos)
+        public static void FazerCalculo(char[,] receberMatrizComOsDadosAtribuidos)
         {
             if (receberMatrizComOsDadosAtribuidos.Length <= 8)
             {
                 double dividirMatrizNoMeio = receberMatrizComOsDadosAtribuidos.Length / 2;
-                Int16 receberAdivisaoDaMatriz = (short)Math.Ceiling(dividirMatrizNoMeio);                
-                for (int percorrerLinhaDaMatriz = 0; percorrerLinhaDaMatriz <= receberAdivisaoDaMatriz; percorrerLinhaDaMatriz++)
+                Int16 receberAdivisaoDaMatriz = (short)Math.Ceiling(dividirMatrizNoMeio);
+                Int16 linhaDaMatriz = 0;
+                Int16 validarAcontagemDaOperacao = 0;
+                for (int percorrerColunaDaMatriz = 0; percorrerColunaDaMatriz <= receberAdivisaoDaMatriz; percorrerColunaDaMatriz++)
                 {
-                    
+                    if (receberMatrizComOsDadosAtribuidos[linhaDaMatriz, percorrerColunaDaMatriz] == receberMatrizComOsDadosAtribuidos[linhaDaMatriz + 1, percorrerColunaDaMatriz])
+                    {
+                        validarAcontagemDaOperacao++;
+                    }
                 }
+                Console.WriteLine($"O total de conexões foi de {validarAcontagemDaOperacao}");
             }
             else
             {
 
             }
-            return "";
+            
         }
     }
 }
