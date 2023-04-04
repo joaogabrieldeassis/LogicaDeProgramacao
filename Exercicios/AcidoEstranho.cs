@@ -121,7 +121,7 @@ namespace Exercicios
                 indexDoArrayDeCaracters = (byte)receberAsLetras.Length;
                 indexDoArrayDeCaracters--;
                 byte definirLinhaDaMatriz = 0;
-                for (Int16 linha = 0; linha <= 2; linha++)
+                for (Int16 linha = 0; linha <= 1; linha++)
                 {
                     if (definirLinhaDaMatriz == 1)
                     {
@@ -155,11 +155,17 @@ namespace Exercicios
                 Int16 receberAdivisaoDaMatriz = (short)Math.Ceiling(dividirMatrizNoMeio);
                 Int16 linhaDaMatriz = 0;
                 Int16 validarAcontagemDaOperacao = 0;
-                for (int percorrerColunaDaMatriz = 0; percorrerColunaDaMatriz <= receberAdivisaoDaMatriz; percorrerColunaDaMatriz++)
+                for (int percorrerColunaDaMatriz = 0; percorrerColunaDaMatriz < receberAdivisaoDaMatriz; percorrerColunaDaMatriz++)
                 {
-                    if (receberMatrizComOsDadosAtribuidos[linhaDaMatriz, percorrerColunaDaMatriz] == receberMatrizComOsDadosAtribuidos[linhaDaMatriz + 1, percorrerColunaDaMatriz])
+                    if (receberMatrizComOsDadosAtribuidos[linhaDaMatriz, percorrerColunaDaMatriz] == 'B' || receberMatrizComOsDadosAtribuidos[linhaDaMatriz, percorrerColunaDaMatriz] == 'b'
+                        || receberMatrizComOsDadosAtribuidos[linhaDaMatriz, percorrerColunaDaMatriz] == 'S' || receberMatrizComOsDadosAtribuidos[linhaDaMatriz, percorrerColunaDaMatriz] == 's')
                     {
-                        validarAcontagemDaOperacao++;
+                        if (receberMatrizComOsDadosAtribuidos[linhaDaMatriz+1, percorrerColunaDaMatriz] == 'B' || receberMatrizComOsDadosAtribuidos[linhaDaMatriz+1, percorrerColunaDaMatriz] == 'b'
+                        || receberMatrizComOsDadosAtribuidos[linhaDaMatriz + 1, percorrerColunaDaMatriz] == 'S' || receberMatrizComOsDadosAtribuidos[linhaDaMatriz + 1, percorrerColunaDaMatriz] == 's')
+                        {
+                            validarAcontagemDaOperacao++;
+                        }
+                        
                     }
                 }
                 Console.WriteLine($"O total de conexões foi de {validarAcontagemDaOperacao}");
