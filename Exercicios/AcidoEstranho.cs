@@ -153,12 +153,9 @@ namespace Exercicios
             {
                 double dividirMatrizNoMeio = receberMatrizComOsDadosAtribuidos.Length / 2;
                 Int16 receberAdivisaoDaMatriz = (short)Math.Ceiling(dividirMatrizNoMeio);                
-                for (int percorrerLinhaUmDaMatriz = 0; percorrerLinhaUmDaMatriz <= receberAdivisaoDaMatriz; percorrerLinhaUmDaMatriz++)
+                for (int percorrerLinhaDaMatriz = 0; percorrerLinhaDaMatriz <= receberAdivisaoDaMatriz; percorrerLinhaDaMatriz++)
                 {
-                    for (int percorrerLinhaDoisDaMatriz = 0; percorrerLinhaDoisDaMatriz <= receberAdivisaoDaMatriz; percorrerLinhaDoisDaMatriz++)
-                    {
-
-                    }
+                    
                 }
             }
             else
