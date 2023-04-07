@@ -86,35 +86,6 @@ namespace Exercicios
                     }
                 }
             }
-            /*else if (receberOtamanhoDaString <= 4)
-            {
-                indexDoArrayDeCaracters = 0;                
-                byte mudarAposicaoDaMatriz = 0;
-                for (Int16 linhaDaMatriz = 1; linhaDaMatriz >= 0; linhaDaMatriz--)
-                {
-                    if (mudarAposicaoDaMatriz == 1)
-                    {
-                        mudarAposicaoDaMatriz = 0;
-                        for (Int16 coluna = 1; coluna >= 0; coluna--, indexDoArrayDeCaracters++)
-                        {
-                            receiveMatriz[linhaDaMatriz, coluna] = quebrarNumeros[indexDoArrayDeCaracters];
-                            if (indexDoArrayDeCaracters == 0)
-                                break;
-                        }
-                    }
-                    else
-                    {
-                        mudarAposicaoDaMatriz = 1;
-                        for (int coluna = 0; coluna <= 1; coluna++, indexDoArrayDeCaracters++)
-                        {
-                            receiveMatriz[linhaDaMatriz, coluna] = quebrarNumeros[indexDoArrayDeCaracters];
-                            if (indexDoArrayDeCaracters == 1)
-                                break;
-                        }
-                    }
-
-                }
-            }*/
             else
             {
                 indexDoArrayDeCaracters = 0;
