@@ -86,17 +86,16 @@ namespace Exercicios
                     }
                 }
             }
-            else if (receberOtamanhoDaString <= 4)
+            /*else if (receberOtamanhoDaString <= 4)
             {
-                indexDoArrayDeCaracters = (byte)receberAsLetras.Length;
-                indexDoArrayDeCaracters--;
+                indexDoArrayDeCaracters = 0;                
                 byte mudarAposicaoDaMatriz = 0;
-                for (Int16 linhaDaMatriz = 0; linhaDaMatriz <= 1; linhaDaMatriz++)
+                for (Int16 linhaDaMatriz = 1; linhaDaMatriz >= 0; linhaDaMatriz--)
                 {
                     if (mudarAposicaoDaMatriz == 1)
                     {
                         mudarAposicaoDaMatriz = 0;
-                        for (Int16 coluna = 1; coluna >= 0; coluna--, indexDoArrayDeCaracters--)
+                        for (Int16 coluna = 1; coluna >= 0; coluna--, indexDoArrayDeCaracters++)
                         {
                             receiveMatriz[linhaDaMatriz, coluna] = quebrarNumeros[indexDoArrayDeCaracters];
                             if (indexDoArrayDeCaracters == 0)
@@ -106,27 +105,27 @@ namespace Exercicios
                     else
                     {
                         mudarAposicaoDaMatriz = 1;
-                        for (int coluna = 0; coluna <= 1; coluna++, indexDoArrayDeCaracters--)
+                        for (int coluna = 0; coluna <= 1; coluna++, indexDoArrayDeCaracters++)
                         {
                             receiveMatriz[linhaDaMatriz, coluna] = quebrarNumeros[indexDoArrayDeCaracters];
-                            if (indexDoArrayDeCaracters == 0)
+                            if (indexDoArrayDeCaracters == 1)
                                 break;
                         }
                     }
 
                 }
-            }
+            }*/
             else if (receberOtamanhoDaString <= 8)
             {
-                indexDoArrayDeCaracters = (byte)receberAsLetras.Length;
-                indexDoArrayDeCaracters--;
+                indexDoArrayDeCaracters = 0;
+                Int16 definirOTamanhoDaColuna = receberOtamanhoDaString / 2;               
                 byte definirLinhaDaMatriz = 0;
                 for (Int16 linha = 0; linha <= 1; linha++)
                 {
                     if (definirLinhaDaMatriz == 1)
                     {
                         definirLinhaDaMatriz = 0;
-                        for (Int16 coluna = 3; coluna >= 0; coluna--, indexDoArrayDeCaracters--)
+                        for (Int16 coluna = definirOTamanhoDaColuna; coluna >= 0; coluna--, indexDoArrayDeCaracters--)
                         {
                             receiveMatriz[linha, coluna] = quebrarNumeros[indexDoArrayDeCaracters];
                             if (indexDoArrayDeCaracters == receberOtamanhoDaString || indexDoArrayDeCaracters == 0)
@@ -136,7 +135,7 @@ namespace Exercicios
                     else
                     {
                         definirLinhaDaMatriz = 1;
-                        for (Int16 coluna = 0; coluna <= 3; coluna++, indexDoArrayDeCaracters--)
+                        for (Int16 coluna = 0; coluna <= definirOTamanhoDaColuna; coluna++, indexDoArrayDeCaracters--)
                         {
                             receiveMatriz[linha, coluna] = quebrarNumeros[indexDoArrayDeCaracters];
                             if (indexDoArrayDeCaracters == receberOtamanhoDaString || indexDoArrayDeCaracters == 0)
@@ -145,9 +144,9 @@ namespace Exercicios
                     }
                 }
             }
-            FazerCalculo(receiveMatriz);
+            VerificarQuantasConexoesEpossivelFazer(receiveMatriz);
         }
-        public static void FazerCalculo(char[,] receberMatrizComOsDadosAtribuidos)
+        public static void VerificarQuantasConexoesEpossivelFazer(char[,] receberMatrizComOsDadosAtribuidos)
         {
             if (receberMatrizComOsDadosAtribuidos.Length <= 8)
             {
@@ -166,6 +165,14 @@ namespace Exercicios
                             validarAcontagemDaOperacao++;
                         }
                         
+                    }
+                    else
+                    {
+                        if (receberMatrizComOsDadosAtribuidos[linhaDaMatriz + 1, percorrerColunaDaMatriz] == 'C' || receberMatrizComOsDadosAtribuidos[linhaDaMatriz + 1, percorrerColunaDaMatriz] == 'f'
+                        || receberMatrizComOsDadosAtribuidos[linhaDaMatriz + 1, percorrerColunaDaMatriz] == 'F' || receberMatrizComOsDadosAtribuidos[linhaDaMatriz + 1, percorrerColunaDaMatriz] == 'c')
+                        {
+                            validarAcontagemDaOperacao++;
+                        }
                     }
                 }
                 Console.WriteLine($"O total de conexões foi de {validarAcontagemDaOperacao}");
