@@ -115,31 +115,37 @@ namespace Exercicios
 
                 }
             }*/
-            else if (receberOtamanhoDaString <= 8)
+            else
             {
                 indexDoArrayDeCaracters = 0;
-                Int16 definirOTamanhoDaColuna = receberOtamanhoDaString / 2;               
+                Int16 definirOTamanhoDaColuna = (short)(receberOtamanhoDaString / 2);
+
+                Int16 definirSeEparOuImpar = (short)(receberOtamanhoDaString % 2);
+                if (definirSeEparOuImpar == 0)
+                {
+                    definirOTamanhoDaColuna--;
+                }
                 byte definirLinhaDaMatriz = 0;
-                for (Int16 linha = 0; linha <= 1; linha++)
+                for (Int16 linha = 1; linha >= 0; linha--)
                 {
                     if (definirLinhaDaMatriz == 1)
                     {
                         definirLinhaDaMatriz = 0;
-                        for (Int16 coluna = definirOTamanhoDaColuna; coluna >= 0; coluna--, indexDoArrayDeCaracters--)
+                        for (Int16 coluna = definirOTamanhoDaColuna; coluna >= 0; coluna--, indexDoArrayDeCaracters++)
                         {
                             receiveMatriz[linha, coluna] = quebrarNumeros[indexDoArrayDeCaracters];
-                            if (indexDoArrayDeCaracters == receberOtamanhoDaString || indexDoArrayDeCaracters == 0)
-                                break;
+                            //if (indexDoArrayDeCaracters == receberOtamanhoDaString || indexDoArrayDeCaracters == 0)
+                                //break;
                         }
                     }
                     else
                     {
                         definirLinhaDaMatriz = 1;
-                        for (Int16 coluna = 0; coluna <= definirOTamanhoDaColuna; coluna++, indexDoArrayDeCaracters--)
+                        for (Int16 coluna = 0; coluna <= definirOTamanhoDaColuna; coluna++, indexDoArrayDeCaracters++)
                         {
                             receiveMatriz[linha, coluna] = quebrarNumeros[indexDoArrayDeCaracters];
-                            if (indexDoArrayDeCaracters == receberOtamanhoDaString || indexDoArrayDeCaracters == 0)
-                                break;
+                            //if (indexDoArrayDeCaracters == receberOtamanhoDaString || indexDoArrayDeCaracters == 0)
+                              //  break;
                         }
                     }
                 }
