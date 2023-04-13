@@ -37,10 +37,12 @@ namespace Exercicios
             Console.WriteLine("Digite Apenas as letras ' C F B S ' para o teste");
             var receiveBase = Console.ReadLine();
             var tamanhoDaString = receiveBase.Length;
-            decimal maiorDoqueDoze = tamanhoDaString % 4;
+            decimal definirSeEImparOuPar = tamanhoDaString % 4;
             int definirLinhaDaMatriz = tamanhoDaString / 4;
-            if (maiorDoqueDoze != 0)
+            int definirColunaDaMatriz = tamanhoDaString / 2;
+            if (definirSeEImparOuPar != 0)
             {
+                definirColunaDaMatriz++;
                 definirLinhaDaMatriz++;
             }
             char[,] receiveTape;
@@ -50,7 +52,7 @@ namespace Exercicios
                     receiveTape = new char[2, 2];
                     break;
                 case <= 8:
-                    receiveTape = new char[2, 4];
+                    receiveTape = new char[2, definirColunaDaMatriz];
                     break;
                 case > 8:
                     receiveTape = new char[definirLinhaDaMatriz, 4];
@@ -92,10 +94,7 @@ namespace Exercicios
                 Int16 definirOTamanhoDaColuna = (short)(receberOtamanhoDaString / 2);
 
                 Int16 definirSeEparOuImpar = (short)(receberOtamanhoDaString % 2);
-                if (definirSeEparOuImpar == 0)
-                {
-                    definirOTamanhoDaColuna--;
-                }
+                
                 byte definirLinhaDaMatriz = 0;
                 for (Int16 linha = 1; linha >= 0; linha--)
                 {
@@ -104,6 +103,7 @@ namespace Exercicios
                         definirLinhaDaMatriz = 0;
                         for (Int16 coluna = definirOTamanhoDaColuna; coluna >= 0; coluna--, indexDoArrayDeCaracters++)
                         {
+                            
                             receiveMatriz[linha, coluna] = quebrarNumeros[indexDoArrayDeCaracters];
                             //if (indexDoArrayDeCaracters == receberOtamanhoDaString || indexDoArrayDeCaracters == 0)
                                 //break;
@@ -114,6 +114,11 @@ namespace Exercicios
                         definirLinhaDaMatriz = 1;
                         for (Int16 coluna = 0; coluna <= definirOTamanhoDaColuna; coluna++, indexDoArrayDeCaracters++)
                         {
+                            if (definirSeEparOuImpar == 1)
+                            {
+                                receiveMatriz[linha, coluna] = '0';
+                                definirSeEparOuImpar = 0;
+                            }
                             receiveMatriz[linha, coluna] = quebrarNumeros[indexDoArrayDeCaracters];
                             //if (indexDoArrayDeCaracters == receberOtamanhoDaString || indexDoArrayDeCaracters == 0)
                               //  break;
