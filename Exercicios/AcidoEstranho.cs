@@ -64,7 +64,12 @@ namespace Exercicios
         }
         public static void AtribuirDadosAMatriz(char[,] receiveMatriz, string receberAsLetras, Int32 receberAdefinicaoDaLinhaDaMatriz, Int32 receberOtamanhoDaString)
         {
-            char[] quebrarNumeros = receberAsLetras.ToCharArray();
+            Int16 definirSeEparOuImpar = (short)(receberOtamanhoDaString % 2);
+            if (definirSeEparOuImpar == 1)
+            {
+                char[] quebrarNumeros = receberAsLetras.ToCharArray();
+            }
+           quebrarNumeros = receberAsLetras.ToCharArray();
             byte indexDoArrayDeCaracters = 0, trocarFileira = 0;
             if (receberOtamanhoDaString > 8)
             {
@@ -119,7 +124,11 @@ namespace Exercicios
                                 receiveMatriz[linha, coluna] = '0';
                                 definirSeEparOuImpar = 0;
                             }
-                            receiveMatriz[linha, coluna] = quebrarNumeros[indexDoArrayDeCaracters];
+                            else
+                            {
+                                receiveMatriz[linha, coluna] = quebrarNumeros[indexDoArrayDeCaracters];
+                            }
+                            
                             //if (indexDoArrayDeCaracters == receberOtamanhoDaString || indexDoArrayDeCaracters == 0)
                               //  break;
                         }
