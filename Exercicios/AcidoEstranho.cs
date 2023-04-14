@@ -65,11 +65,20 @@ namespace Exercicios
         public static void AtribuirDadosAMatriz(char[,] receiveMatriz, string receberAsLetras, Int32 receberAdefinicaoDaLinhaDaMatriz, Int32 receberOtamanhoDaString)
         {
             Int16 definirSeEparOuImpar = (short)(receberOtamanhoDaString % 2);
-            if (definirSeEparOuImpar == 1)
+            char[] quebrarNumeros = receberAsLetras.ToCharArray();
+            char[] colecaoDeCaracters = new char[receberAsLetras.Length + 1];
+            
+            for (int i = 0; i < receberOtamanhoDaString; i++)
             {
-                char[] quebrarNumeros = receberAsLetras.ToCharArray();
+                if (definirSeEparOuImpar == 1)
+                {
+                    colecaoDeCaracters[0] = '0';
+                    colecaoDeCaracters[i + 1] = quebrarNumeros[i];
+                    definirSeEparOuImpar = 0;
+                }
+               
             }
-           quebrarNumeros = receberAsLetras.ToCharArray();
+            quebrarNumeros = receberAsLetras.ToCharArray();
             byte indexDoArrayDeCaracters = 0, trocarFileira = 0;
             if (receberOtamanhoDaString > 8)
             {
@@ -80,7 +89,7 @@ namespace Exercicios
                         trocarFileira++;
                         for (Int16 coluna = 0; coluna != 4; coluna++, indexDoArrayDeCaracters += +1)
                         {
-                            receiveMatriz[linha, coluna] = quebrarNumeros[indexDoArrayDeCaracters];
+                            receiveMatriz[linha, coluna] = colecaoDeCaracters[indexDoArrayDeCaracters];
                         }
                     }
                     else
@@ -88,7 +97,7 @@ namespace Exercicios
                         trocarFileira = 0;
                         for (Int16 coluna = 3; coluna >= 0; coluna--, indexDoArrayDeCaracters += +1)
                         {
-                            receiveMatriz[linha, coluna] = quebrarNumeros[indexDoArrayDeCaracters];
+                            receiveMatriz[linha, coluna] = colecaoDeCaracters[indexDoArrayDeCaracters];
                         }
                     }
                 }
@@ -98,8 +107,6 @@ namespace Exercicios
                 indexDoArrayDeCaracters = 0;
                 Int16 definirOTamanhoDaColuna = (short)(receberOtamanhoDaString / 2);
 
-                Int16 definirSeEparOuImpar = (short)(receberOtamanhoDaString % 2);
-                
                 byte definirLinhaDaMatriz = 0;
                 for (Int16 linha = 1; linha >= 0; linha--)
                 {
@@ -108,10 +115,9 @@ namespace Exercicios
                         definirLinhaDaMatriz = 0;
                         for (Int16 coluna = definirOTamanhoDaColuna; coluna >= 0; coluna--, indexDoArrayDeCaracters++)
                         {
-                            
-                            receiveMatriz[linha, coluna] = quebrarNumeros[indexDoArrayDeCaracters];
+                            receiveMatriz[linha, coluna] = colecaoDeCaracters[indexDoArrayDeCaracters];
                             //if (indexDoArrayDeCaracters == receberOtamanhoDaString || indexDoArrayDeCaracters == 0)
-                                //break;
+                            //break;
                         }
                     }
                     else
@@ -119,18 +125,9 @@ namespace Exercicios
                         definirLinhaDaMatriz = 1;
                         for (Int16 coluna = 0; coluna <= definirOTamanhoDaColuna; coluna++, indexDoArrayDeCaracters++)
                         {
-                            if (definirSeEparOuImpar == 1)
-                            {
-                                receiveMatriz[linha, coluna] = '0';
-                                definirSeEparOuImpar = 0;
-                            }
-                            else
-                            {
-                                receiveMatriz[linha, coluna] = quebrarNumeros[indexDoArrayDeCaracters];
-                            }
-                            
+                            receiveMatriz[linha, coluna] = colecaoDeCaracters[indexDoArrayDeCaracters];
                             //if (indexDoArrayDeCaracters == receberOtamanhoDaString || indexDoArrayDeCaracters == 0)
-                              //  break;
+                            //  break;
                         }
                     }
                 }
@@ -150,12 +147,12 @@ namespace Exercicios
                     if (receberMatrizComOsDadosAtribuidos[linhaDaMatriz, percorrerColunaDaMatriz] == 'B' || receberMatrizComOsDadosAtribuidos[linhaDaMatriz, percorrerColunaDaMatriz] == 'b'
                         || receberMatrizComOsDadosAtribuidos[linhaDaMatriz, percorrerColunaDaMatriz] == 'S' || receberMatrizComOsDadosAtribuidos[linhaDaMatriz, percorrerColunaDaMatriz] == 's')
                     {
-                        if (receberMatrizComOsDadosAtribuidos[linhaDaMatriz+1, percorrerColunaDaMatriz] == 'B' || receberMatrizComOsDadosAtribuidos[linhaDaMatriz+1, percorrerColunaDaMatriz] == 'b'
+                        if (receberMatrizComOsDadosAtribuidos[linhaDaMatriz + 1, percorrerColunaDaMatriz] == 'B' || receberMatrizComOsDadosAtribuidos[linhaDaMatriz + 1, percorrerColunaDaMatriz] == 'b'
                         || receberMatrizComOsDadosAtribuidos[linhaDaMatriz + 1, percorrerColunaDaMatriz] == 'S' || receberMatrizComOsDadosAtribuidos[linhaDaMatriz + 1, percorrerColunaDaMatriz] == 's')
                         {
                             validarAcontagemDaOperacao++;
                         }
-                        
+
                     }
                     else
                     {
@@ -172,7 +169,7 @@ namespace Exercicios
             {
 
             }
-            
+
         }
     }
 }
