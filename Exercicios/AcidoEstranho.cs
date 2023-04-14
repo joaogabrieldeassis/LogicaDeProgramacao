@@ -72,13 +72,18 @@ namespace Exercicios
             {
                 if (definirSeEparOuImpar == 1)
                 {
-                    colecaoDeCaracters[0] = '0';
-                    colecaoDeCaracters[i + 1] = quebrarNumeros[i];
+                    colecaoDeCaracters[0] = '0';                  
+                    colecaoDeCaracters[i+1] = quebrarNumeros[i];
                     definirSeEparOuImpar = 0;
                 }
-               
-            }
-            quebrarNumeros = receberAsLetras.ToCharArray();
+                else if (i == 0)
+                {
+                    colecaoDeCaracters[i] = quebrarNumeros[i];
+                }
+                {
+                    
+                }                
+            }           
             byte indexDoArrayDeCaracters = 0, trocarFileira = 0;
             if (receberOtamanhoDaString > 8)
             {
@@ -115,9 +120,7 @@ namespace Exercicios
                         definirLinhaDaMatriz = 0;
                         for (Int16 coluna = definirOTamanhoDaColuna; coluna >= 0; coluna--, indexDoArrayDeCaracters++)
                         {
-                            receiveMatriz[linha, coluna] = colecaoDeCaracters[indexDoArrayDeCaracters];
-                            //if (indexDoArrayDeCaracters == receberOtamanhoDaString || indexDoArrayDeCaracters == 0)
-                            //break;
+                            receiveMatriz[linha, coluna] = colecaoDeCaracters[indexDoArrayDeCaracters];                            
                         }
                     }
                     else
@@ -125,9 +128,7 @@ namespace Exercicios
                         definirLinhaDaMatriz = 1;
                         for (Int16 coluna = 0; coluna <= definirOTamanhoDaColuna; coluna++, indexDoArrayDeCaracters++)
                         {
-                            receiveMatriz[linha, coluna] = colecaoDeCaracters[indexDoArrayDeCaracters];
-                            //if (indexDoArrayDeCaracters == receberOtamanhoDaString || indexDoArrayDeCaracters == 0)
-                            //  break;
+                            receiveMatriz[linha, coluna] = colecaoDeCaracters[indexDoArrayDeCaracters];                          
                         }
                     }
                 }
