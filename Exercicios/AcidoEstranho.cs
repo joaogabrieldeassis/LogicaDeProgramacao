@@ -1,12 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.NetworkInformation;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Exercicios
+﻿namespace Exercicios
 {
     public class AcidoEstranho
     {
@@ -35,22 +27,18 @@ namespace Exercicios
         public static void Main()
         {
             Console.WriteLine("Digite Apenas as letras ' C F B S ' para o teste");
-            var receiveBase = Console.ReadLine();
-            var tamanhoDaString = receiveBase.Length;
-            decimal definirSeEImparOuPar = tamanhoDaString % 4;
-            int definirLinhaDaMatriz = tamanhoDaString / 4;
-            int definirColunaDaMatriz = tamanhoDaString / 2;
+            var receberStringsDoUsuario = Console.ReadLine().ToUpper();
+            var definirOtamanhoDaString = receberStringsDoUsuario.Length;
+            decimal definirSeEImparOuPar = definirOtamanhoDaString % 2;
+            int definirLinhaDaMatriz = definirOtamanhoDaString / 4;
+            int definirColunaDaMatriz = definirOtamanhoDaString / 2;
             if (definirSeEImparOuPar != 0)
             {
                 definirColunaDaMatriz++;
-                definirLinhaDaMatriz++;
             }
             char[,] receiveTape;
-            switch (tamanhoDaString)
-            {
-                case <= 4:
-                    receiveTape = new char[2, 2];
-                    break;
+            switch (definirOtamanhoDaString)
+            {                
                 case <= 8:
                     receiveTape = new char[2, definirColunaDaMatriz];
                     break;
@@ -59,31 +47,41 @@ namespace Exercicios
                     break;
                 default:
             }
-            AtribuirDadosAMatriz(receiveTape, receiveBase, definirLinhaDaMatriz, tamanhoDaString);
+           char[] enviarArrayDeCaracteresParaAmatriz = AtribuirDadosAoArrayDeCaracteres(definirOtamanhoDaString,receberStringsDoUsuario);
+            AtribuirDadosAMatriz(receiveTape, definirLinhaDaMatriz, definirOtamanhoDaString, definirColunaDaMatriz,enviarArrayDeCaracteresParaAmatriz);
 
         }
-        public static void AtribuirDadosAMatriz(char[,] receiveMatriz, string receberAsLetras, Int32 receberAdefinicaoDaLinhaDaMatriz, Int32 receberOtamanhoDaString)
+        public static char[] AtribuirDadosAoArrayDeCaracteres(int receberOtamanhoDaString, string receberAsLetras)
         {
             Int16 definirSeEparOuImpar = (short)(receberOtamanhoDaString % 2);
             char[] quebrarNumeros = receberAsLetras.ToCharArray();
             char[] colecaoDeCaracters = new char[receberAsLetras.Length + 1];
-            
-            for (int i = 0; i < receberOtamanhoDaString; i++)
+
+            for (int i = 0; i < 1; i++)
             {
                 if (definirSeEparOuImpar == 1)
                 {
-                    colecaoDeCaracters[0] = '0';                  
-                    colecaoDeCaracters[i+1] = quebrarNumeros[i];
-                    definirSeEparOuImpar = 0;
+                    colecaoDeCaracters = new char[receberAsLetras.Length + 1];
+                    colecaoDeCaracters[0] = '0';
+                    for (int a = 1; a <= receberOtamanhoDaString; a++)
+                    {
+                        colecaoDeCaracters[a] = quebrarNumeros[a - 1];
+                    }
                 }
-                else if (i == 0)
+                else
                 {
-                    colecaoDeCaracters[i] = quebrarNumeros[i];
+                    colecaoDeCaracters = new char[receberAsLetras.Length];
+                    for (int a = 0; a < receberOtamanhoDaString; a++)
+                    {
+                        colecaoDeCaracters[a] = quebrarNumeros[a];
+                    }
                 }
-                {
-                    
-                }                
-            }           
+            }
+            return colecaoDeCaracters;
+        }
+        public static void AtribuirDadosAMatriz(char[,] receiveMatriz, Int32 receberAdefinicaoDaLinhaDaMatriz, Int32 receberOtamanhoDaString, Int32 receberColunaDaMatriz, char[] arraDeCaracteres)
+        {
+            
             byte indexDoArrayDeCaracters = 0, trocarFileira = 0;
             if (receberOtamanhoDaString > 8)
             {
@@ -94,7 +92,7 @@ namespace Exercicios
                         trocarFileira++;
                         for (Int16 coluna = 0; coluna != 4; coluna++, indexDoArrayDeCaracters += +1)
                         {
-                            receiveMatriz[linha, coluna] = colecaoDeCaracters[indexDoArrayDeCaracters];
+                            receiveMatriz[linha, coluna] = arraDeCaracteres[indexDoArrayDeCaracters];
                         }
                     }
                     else
@@ -102,33 +100,31 @@ namespace Exercicios
                         trocarFileira = 0;
                         for (Int16 coluna = 3; coluna >= 0; coluna--, indexDoArrayDeCaracters += +1)
                         {
-                            receiveMatriz[linha, coluna] = colecaoDeCaracters[indexDoArrayDeCaracters];
+                            receiveMatriz[linha, coluna] = arraDeCaracteres[indexDoArrayDeCaracters];
                         }
                     }
                 }
             }
             else
             {
-                indexDoArrayDeCaracters = 0;
-                Int16 definirOTamanhoDaColuna = (short)(receberOtamanhoDaString / 2);
-
-                byte definirLinhaDaMatriz = 0;
+                indexDoArrayDeCaracters = 0;                
+                byte definirLinhaDaMatriz = 0;                
                 for (Int16 linha = 1; linha >= 0; linha--)
                 {
                     if (definirLinhaDaMatriz == 1)
                     {
                         definirLinhaDaMatriz = 0;
-                        for (Int16 coluna = definirOTamanhoDaColuna; coluna >= 0; coluna--, indexDoArrayDeCaracters++)
+                        for (Int16 coluna = (short)((short)receberColunaDaMatriz -1); coluna >= 0; coluna--, indexDoArrayDeCaracters++)
                         {
-                            receiveMatriz[linha, coluna] = colecaoDeCaracters[indexDoArrayDeCaracters];                            
+                            receiveMatriz[linha, coluna] = arraDeCaracteres[indexDoArrayDeCaracters];
                         }
                     }
                     else
                     {
                         definirLinhaDaMatriz = 1;
-                        for (Int16 coluna = 0; coluna <= definirOTamanhoDaColuna; coluna++, indexDoArrayDeCaracters++)
+                        for (Int16 coluna = 0; coluna < receberColunaDaMatriz; coluna++, indexDoArrayDeCaracters++)
                         {
-                            receiveMatriz[linha, coluna] = colecaoDeCaracters[indexDoArrayDeCaracters];                          
+                            receiveMatriz[linha, coluna] = arraDeCaracteres[indexDoArrayDeCaracters];
                         }
                     }
                 }
@@ -139,17 +135,16 @@ namespace Exercicios
         {
             if (receberMatrizComOsDadosAtribuidos.Length <= 8)
             {
-                double dividirMatrizNoMeio = receberMatrizComOsDadosAtribuidos.Length / 2;
-                Int16 receberAdivisaoDaMatriz = (short)Math.Ceiling(dividirMatrizNoMeio);
+                int receberAdivisaoDaMatriz = receberMatrizComOsDadosAtribuidos.Length / 2;                
                 Int16 linhaDaMatriz = 0;
                 Int16 validarAcontagemDaOperacao = 0;
                 for (int percorrerColunaDaMatriz = 0; percorrerColunaDaMatriz < receberAdivisaoDaMatriz; percorrerColunaDaMatriz++)
                 {
-                    if (receberMatrizComOsDadosAtribuidos[linhaDaMatriz, percorrerColunaDaMatriz] == 'B' || receberMatrizComOsDadosAtribuidos[linhaDaMatriz, percorrerColunaDaMatriz] == 'b'
-                        || receberMatrizComOsDadosAtribuidos[linhaDaMatriz, percorrerColunaDaMatriz] == 'S' || receberMatrizComOsDadosAtribuidos[linhaDaMatriz, percorrerColunaDaMatriz] == 's')
+                    if (receberMatrizComOsDadosAtribuidos[linhaDaMatriz, percorrerColunaDaMatriz] == 'B'
+                        || receberMatrizComOsDadosAtribuidos[linhaDaMatriz, percorrerColunaDaMatriz] == 'S')
                     {
-                        if (receberMatrizComOsDadosAtribuidos[linhaDaMatriz + 1, percorrerColunaDaMatriz] == 'B' || receberMatrizComOsDadosAtribuidos[linhaDaMatriz + 1, percorrerColunaDaMatriz] == 'b'
-                        || receberMatrizComOsDadosAtribuidos[linhaDaMatriz + 1, percorrerColunaDaMatriz] == 'S' || receberMatrizComOsDadosAtribuidos[linhaDaMatriz + 1, percorrerColunaDaMatriz] == 's')
+                        if (receberMatrizComOsDadosAtribuidos[linhaDaMatriz + 1, percorrerColunaDaMatriz] == 'B'
+                        || receberMatrizComOsDadosAtribuidos[linhaDaMatriz + 1, percorrerColunaDaMatriz] == 'S')
                         {
                             validarAcontagemDaOperacao++;
                         }
@@ -157,13 +152,14 @@ namespace Exercicios
                     }
                     else
                     {
-                        if (receberMatrizComOsDadosAtribuidos[linhaDaMatriz + 1, percorrerColunaDaMatriz] == 'C' || receberMatrizComOsDadosAtribuidos[linhaDaMatriz + 1, percorrerColunaDaMatriz] == 'f'
-                        || receberMatrizComOsDadosAtribuidos[linhaDaMatriz + 1, percorrerColunaDaMatriz] == 'F' || receberMatrizComOsDadosAtribuidos[linhaDaMatriz + 1, percorrerColunaDaMatriz] == 'c')
+                        if (receberMatrizComOsDadosAtribuidos[linhaDaMatriz + 1, percorrerColunaDaMatriz] == 'C'
+                        || receberMatrizComOsDadosAtribuidos[linhaDaMatriz + 1, percorrerColunaDaMatriz] == 'F')
                         {
                             validarAcontagemDaOperacao++;
                         }
                     }
                 }
+                Console.Clear();
                 Console.WriteLine($"O total de conexões foi de {validarAcontagemDaOperacao}");
             }
             else
