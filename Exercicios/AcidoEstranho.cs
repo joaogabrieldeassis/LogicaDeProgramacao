@@ -39,12 +39,12 @@
             string receberAentradaDoUsuario = Console.ReadLine();            
             CalculoParaDefinirOtamanhoDaMatriz(receberAentradaDoUsuario);
         }       
-
+        
         public static void CalculoParaDefinirOtamanhoDaMatriz(string receberAEntradaDoUsuario)
         {
-            double definirQuantasLinhasAmatrizIraTer = receberAEntradaDoUsuario.Length / 4.0;
+            double definirQuantasLinhasAmatrizIraTer = receberAEntradaDoUsuario.Length <= 4 ? 2.0 : 4.0;
             double definirQuantasColunasAmatrizIraTer = receberAEntradaDoUsuario.Length / definirQuantasLinhasAmatrizIraTer;
-            if (receberAEntradaDoUsuario.Length % 2 == 0)
+            if (receberAEntradaDoUsuario.Length % 2 != 0)
             {
                 definirQuantasLinhasAmatrizIraTer = Math.Ceiling(definirQuantasLinhasAmatrizIraTer);
                 definirQuantasColunasAmatrizIraTer = Math.Ceiling(definirQuantasColunasAmatrizIraTer);
@@ -54,13 +54,13 @@
         }
 
         public  static void AtribuirDadosAmatriz(char[,] receberMatriz,string receberOsDadosDaMatriz,double receberAquantidadeDeLinhasDaMatriz,double receberAquantidadeDeColunaDaMatriz)
-        {            
-            for (int percorrerLinhaDaMatriz = 0; percorrerLinhaDaMatriz < receberAquantidadeDeLinhasDaMatriz; percorrerLinhaDaMatriz++)
+        {
+            char[] receberAstringEmCaractersParaAtribuirAmatriz = receberOsDadosDaMatriz.ToCharArray();
+            for (int percorrerLinhaDaMatriz = 0, percorrerArrayDeCaracters = 0; percorrerLinhaDaMatriz < receberAquantidadeDeLinhasDaMatriz; percorrerLinhaDaMatriz++)
             {
-                for (int percorrerColunaDaMatriz = 0; percorrerColunaDaMatriz < receberAquantidadeDeColunaDaMatriz; percorrerColunaDaMatriz++)
-                {
-                    
-                    receberMatriz[percorrerLinhaDaMatriz, percorrerColunaDaMatriz] = char.Parse(receberOsDadosDaMatriz);
+                for (int percorrerColunaDaMatriz = 0; percorrerColunaDaMatriz < receberAquantidadeDeColunaDaMatriz; percorrerColunaDaMatriz++, percorrerArrayDeCaracters++)
+                {                    
+                    receberMatriz[percorrerLinhaDaMatriz, percorrerColunaDaMatriz] = receberAstringEmCaractersParaAtribuirAmatriz[percorrerArrayDeCaracters];
                 }
             }
         }
