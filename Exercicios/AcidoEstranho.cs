@@ -60,10 +60,11 @@
             for (int percorrerLinhaDaMatriz = 0, percorrerArrayDeCaracters = 0; percorrerLinhaDaMatriz < receberMatriz.GetLength(0); percorrerLinhaDaMatriz++)
             {
                 for (int percorrerColunaDaMatriz = 0; percorrerColunaDaMatriz < receberMatriz.GetLength(1); percorrerColunaDaMatriz++, percorrerArrayDeCaracters++)
-                {
+                {                    
                     receberMatriz[percorrerLinhaDaMatriz, percorrerColunaDaMatriz] = receberAstringEmCaractersParaAtribuirAmatriz[percorrerArrayDeCaracters];
-                    if (percorrerArrayDeCaracters+1 == receberOsDadosDaMatriz.Length)
+                    if (percorrerArrayDeCaracters + 1 == receberOsDadosDaMatriz.Length)
                     {
+                        percorrerColunaDaMatriz++;
                         for (int i = 0; i < percorrerColunaDaMatriz; i++)
                         {
                             receberMatriz[percorrerLinhaDaMatriz, percorrerColunaDaMatriz] = '0';
