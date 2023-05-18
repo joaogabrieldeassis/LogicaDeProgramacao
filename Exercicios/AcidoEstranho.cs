@@ -34,33 +34,42 @@
         }
         public static void ReceberAEntradaDoUsuario()
         {
-
             Console.WriteLine("Digite as letras do programa");
-            string receberAentradaDoUsuario = Console.ReadLine();            
+            string receberAentradaDoUsuario = Console.ReadLine();
             CalculoParaDefinirOtamanhoDaMatriz(receberAentradaDoUsuario);
-        }       
-        
+        }
+
         public static void CalculoParaDefinirOtamanhoDaMatriz(string receberAEntradaDoUsuario)
         {
-            double definirQuantasLinhasAmatrizIraTer = receberAEntradaDoUsuario.Length <= 4 ? 2.0 : 4.0;
+            double definirQuantasLinhasAmatrizIraTer = receberAEntradaDoUsuario.Length <= 4 ? receberAEntradaDoUsuario.Length / 2.0 : receberAEntradaDoUsuario.Length / 4.0;
             double definirQuantasColunasAmatrizIraTer = receberAEntradaDoUsuario.Length / definirQuantasLinhasAmatrizIraTer;
-            if (receberAEntradaDoUsuario.Length % 2 != 0)
+            if (VerificarSeEImpar(receberAEntradaDoUsuario.Length))
             {
                 definirQuantasLinhasAmatrizIraTer = Math.Ceiling(definirQuantasLinhasAmatrizIraTer);
                 definirQuantasColunasAmatrizIraTer = Math.Ceiling(definirQuantasColunasAmatrizIraTer);
             }
             char[,] matrizParaArmazenarOsDadosDoUsuario = new char[(int)definirQuantasLinhasAmatrizIraTer, (int)definirQuantasColunasAmatrizIraTer];
-            AtribuirDadosAmatriz(matrizParaArmazenarOsDadosDoUsuario,receberAEntradaDoUsuario,definirQuantasLinhasAmatrizIraTer,definirQuantasColunasAmatrizIraTer);
-        }
 
-        public  static void AtribuirDadosAmatriz(char[,] receberMatriz,string receberOsDadosDaMatriz,double receberAquantidadeDeLinhasDaMatriz,double receberAquantidadeDeColunaDaMatriz)
+            AtribuirDadosAmatriz(matrizParaArmazenarOsDadosDoUsuario, receberAEntradaDoUsuario);
+        }
+        public static bool VerificarSeEImpar(int number) => number % 2 != 0;
+
+        public static void AtribuirDadosAmatriz(char[,] receberMatriz, string receberOsDadosDaMatriz)
         {
             char[] receberAstringEmCaractersParaAtribuirAmatriz = receberOsDadosDaMatriz.ToCharArray();
-            for (int percorrerLinhaDaMatriz = 0, percorrerArrayDeCaracters = 0; percorrerLinhaDaMatriz < receberAquantidadeDeLinhasDaMatriz; percorrerLinhaDaMatriz++)
+            for (int percorrerLinhaDaMatriz = 0, percorrerArrayDeCaracters = 0; percorrerLinhaDaMatriz < receberMatriz.GetLength(0); percorrerLinhaDaMatriz++)
             {
-                for (int percorrerColunaDaMatriz = 0; percorrerColunaDaMatriz < receberAquantidadeDeColunaDaMatriz; percorrerColunaDaMatriz++, percorrerArrayDeCaracters++)
-                {                    
+                for (int percorrerColunaDaMatriz = 0; percorrerColunaDaMatriz < receberMatriz.GetLength(1); percorrerColunaDaMatriz++, percorrerArrayDeCaracters++)
+                {
                     receberMatriz[percorrerLinhaDaMatriz, percorrerColunaDaMatriz] = receberAstringEmCaractersParaAtribuirAmatriz[percorrerArrayDeCaracters];
+                    if (percorrerArrayDeCaracters+1 == receberOsDadosDaMatriz.Length)
+                    {
+                        for (int i = 0; i < percorrerColunaDaMatriz; i++)
+                        {
+                            receberMatriz[percorrerLinhaDaMatriz, percorrerColunaDaMatriz] = '0';
+                        }
+                        break;
+                    }
                 }
             }
         }
