@@ -52,6 +52,7 @@
 
             AtribuirDadosAmatriz(matrizParaArmazenarOsDadosDoUsuario, receberAEntradaDoUsuario);
         }
+
         public static bool VerificarSeEImpar(int number) => number % 2 != 0;
 
         public static void AtribuirDadosAmatriz(char[,] receberMatriz, string receberOsDadosDaMatriz)
@@ -63,9 +64,8 @@
                 {                    
                     receberMatriz[percorrerLinhaDaMatriz, percorrerColunaDaMatriz] = receberAstringEmCaractersParaAtribuirAmatriz[percorrerArrayDeCaracters];
                     if (percorrerArrayDeCaracters + 1 == receberOsDadosDaMatriz.Length)
-                    {
-                        percorrerColunaDaMatriz++;
-                        for (int i = 0; i < percorrerColunaDaMatriz; i++)
+                    {                        
+                        for (int i = receberMatriz.GetLength(1); i < percorrerColunaDaMatriz; i++)
                         {
                             receberMatriz[percorrerLinhaDaMatriz, percorrerColunaDaMatriz] = '0';
                         }
@@ -74,6 +74,10 @@
                 }
             }
         }
+        /*public void VerificarTamanhoDaMatrizParaFazerAsConexoes(char[,] receberMatriz)
+        {
+            if
+        }*/
     }
 }
 
