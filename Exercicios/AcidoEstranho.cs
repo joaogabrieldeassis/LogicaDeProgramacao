@@ -65,9 +65,9 @@
                     receberMatriz[percorrerLinhaDaMatriz, percorrerColunaDaMatriz] = receberAstringEmCaractersParaAtribuirAmatriz[percorrerArrayDeCaracters];
                     if (percorrerArrayDeCaracters + 1 == receberOsDadosDaMatriz.Length)
                     {                        
-                        for (int i = receberMatriz.GetLength(1); i < percorrerColunaDaMatriz; i++)
+                        for (int i = receberMatriz.GetLength(1)-1; i > percorrerColunaDaMatriz; i--)
                         {
-                            receberMatriz[percorrerLinhaDaMatriz, percorrerColunaDaMatriz] = '0';
+                            receberMatriz[percorrerLinhaDaMatriz, i] = '0';
                         }
                         break;
                     }
