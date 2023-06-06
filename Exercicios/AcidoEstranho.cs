@@ -50,34 +50,111 @@
             }
             char[,] matrizParaArmazenarOsDadosDoUsuario = new char[(int)definirQuantasLinhasAmatrizIraTer, (int)definirQuantasColunasAmatrizIraTer];
 
-            AtribuirDadosAmatriz(matrizParaArmazenarOsDadosDoUsuario, receberAEntradaDoUsuario);
+            AtribuirDadosEmBrancoAmatriz(matrizParaArmazenarOsDadosDoUsuario, receberAEntradaDoUsuario);
         }
 
         public static bool VerificarSeEImpar(int number) => number % 2 != 0;
 
-        public static void AtribuirDadosAmatriz(char[,] receberMatriz, string receberOsDadosDaMatriz)
+        public static void AtribuirDadosEmBrancoAmatriz(char[,] receberMatriz, string receberEntradaDoUsuario)
         {
-            char[] receberAstringEmCaractersParaAtribuirAmatriz = receberOsDadosDaMatriz.ToCharArray();
             for (int percorrerLinhaDaMatriz = 0, percorrerArrayDeCaracters = 0; percorrerLinhaDaMatriz < receberMatriz.GetLength(0); percorrerLinhaDaMatriz++)
             {
                 for (int percorrerColunaDaMatriz = 0; percorrerColunaDaMatriz < receberMatriz.GetLength(1); percorrerColunaDaMatriz++, percorrerArrayDeCaracters++)
-                {                    
-                    receberMatriz[percorrerLinhaDaMatriz, percorrerColunaDaMatriz] = receberAstringEmCaractersParaAtribuirAmatriz[percorrerArrayDeCaracters];
-                    if (percorrerArrayDeCaracters + 1 == receberOsDadosDaMatriz.Length)
-                    {                        
-                        for (int i = receberMatriz.GetLength(1)-1; i > percorrerColunaDaMatriz; i--)
-                        {
-                            receberMatriz[percorrerLinhaDaMatriz, i] = '0';
-                        }
-                        break;
+                {
+                    receberMatriz[percorrerLinhaDaMatriz, percorrerColunaDaMatriz] = '0';
+                }
+            }
+            AtribuirStringDoUsuarioAoArrayDeCaracters(receberMatriz, receberEntradaDoUsuario);
+        }
+
+        public static void AtribuirStringDoUsuarioAoArrayDeCaracters(char[,] receberMatriz, string receberOsDadosDaMatriz)
+        {
+            char[] receberAstringEmCaractersParaAtribuirAmatriz = receberOsDadosDaMatriz.ToCharArray();
+            AtribuirDadosDoUsuarioParaAmatriz(receberMatriz, receberAstringEmCaractersParaAtribuirAmatriz);
+        }
+        public static void AtribuirDadosDoUsuarioParaAmatriz(char[,] receberMatriz, char[] receberArrayDeCaracteres)
+        {
+            int trocarAformaDePercorrerAmatriz = 0;
+            for (int percorrerLinhaDaMatriz = 0, percorrerArrayDeCaracters = receberArrayDeCaracteres.Length - 1; percorrerLinhaDaMatriz < receberMatriz.GetLength(0); percorrerLinhaDaMatriz++)
+            {
+                if (trocarAformaDePercorrerAmatriz == 0)
+                {
+                    trocarAformaDePercorrerAmatriz = 1;
+                    for (int percorrerColunaDaMatriz = receberMatriz.GetLength(1) - 1; percorrerColunaDaMatriz >= 0; percorrerColunaDaMatriz--, percorrerArrayDeCaracters--)
+                    {
+                        receberMatriz[percorrerLinhaDaMatriz, percorrerColunaDaMatriz] = receberArrayDeCaracteres[percorrerArrayDeCaracters];
+                        if (percorrerArrayDeCaracters == 0) break;
+                    }
+                }
+                else
+                {
+                    trocarAformaDePercorrerAmatriz = 0;
+                    for (int percorrerColunaDaMatriz = 0; percorrerColunaDaMatriz < receberMatriz.GetLength(1); percorrerColunaDaMatriz++, percorrerArrayDeCaracters--)
+                    {
+                        receberMatriz[percorrerLinhaDaMatriz, percorrerColunaDaMatriz] = receberArrayDeCaracteres[percorrerArrayDeCaracters];
+                        if (percorrerArrayDeCaracters == 0) break;
                     }
                 }
             }
+            ValidarOtamanhoDaMatrixParaVerificarSuasConexoes(receberMatriz);
         }
-        /*public void VerificarTamanhoDaMatrizParaFazerAsConexoes(char[,] receberMatriz)
+        public static void ValidarOtamanhoDaMatrixParaVerificarSuasConexoes(char[,] receberMatriz)
         {
-            if
-        }*/
+            if (receberMatriz.Length <= 8)
+                VerificarAsConexoesDaMatrizComTamanhoMenorDoQueOito(receberMatriz);
+            else
+                VerificarAsConexoesDaMatrizComTamanhoMaiorDoQueOito(receberMatriz);
+        }
+        public static void VerificarAsConexoesDaMatrizComTamanhoMenorDoQueOito(char[,] receberMatriz)
+        {
+            int incrementarOnumeroDeConexoesFeitas = 0;
+            for (int percorrerLinhaDaMatriz = 0; percorrerLinhaDaMatriz < 1; percorrerLinhaDaMatriz++)
+            {
+                for (int percorrerColunaDaMatriz = 0; percorrerColunaDaMatriz < receberMatriz.GetLength(1); percorrerColunaDaMatriz++)
+                {
+                    if (receberMatriz[percorrerLinhaDaMatriz, percorrerColunaDaMatriz] == 'S' && receberMatriz[percorrerLinhaDaMatriz + 1, percorrerColunaDaMatriz] == 'B'
+                        || receberMatriz[percorrerLinhaDaMatriz, percorrerColunaDaMatriz] == 'B' && receberMatriz[percorrerLinhaDaMatriz + 1, percorrerColunaDaMatriz] == 'S')
+                        incrementarOnumeroDeConexoesFeitas++;
+
+                    else if (receberMatriz[percorrerLinhaDaMatriz, percorrerColunaDaMatriz] == 'C' && receberMatriz[percorrerLinhaDaMatriz + 1, percorrerColunaDaMatriz] == 'F'
+                        || receberMatriz[percorrerLinhaDaMatriz, percorrerColunaDaMatriz] == 'F' && receberMatriz[percorrerLinhaDaMatriz + 1, percorrerColunaDaMatriz] == 'C')
+                        incrementarOnumeroDeConexoesFeitas++;
+                }
+            }
+            Console.WriteLine($"O total de conexoes foi de {incrementarOnumeroDeConexoesFeitas}");
+        }
+        public static void VerificarAsConexoesDaMatrizComTamanhoMaiorDoQueOito(char[,] receberMatriz)
+        {
+            int mudarOrdemDePercorrer = 0, incrementarOnumeroDeConexoesFeitas = ValidarOantepenultimoComOsegundoCaracter(receberMatriz);
+            int teste = receberMatriz.GetLength(0);
+            for (int linhaDaMatriz = 0; linhaDaMatriz < receberMatriz.GetLength(0)-1; linhaDaMatriz++)
+            {
+                for (int percorrerColunaDaMatrizDoComecoAoFim = 0, percorrerColunaDaMatrizDoFimAoComeco = 3; percorrerColunaDaMatrizDoComecoAoFim < 2; percorrerColunaDaMatrizDoComecoAoFim++, percorrerColunaDaMatrizDoFimAoComeco--)
+                {
+                    if (receberMatriz[linhaDaMatriz, percorrerColunaDaMatrizDoComecoAoFim] == 'B' && receberMatriz[linhaDaMatriz + 1, percorrerColunaDaMatrizDoFimAoComeco] == 'S'
+                        || receberMatriz[linhaDaMatriz, percorrerColunaDaMatrizDoComecoAoFim] == 'S' && receberMatriz[linhaDaMatriz+1, percorrerColunaDaMatrizDoFimAoComeco] == 'B')
+                        incrementarOnumeroDeConexoesFeitas++;
+
+                    else if (receberMatriz[linhaDaMatriz, percorrerColunaDaMatrizDoComecoAoFim] == 'C' && receberMatriz[linhaDaMatriz + 1, percorrerColunaDaMatrizDoFimAoComeco] == 'F'
+                        || receberMatriz[linhaDaMatriz, percorrerColunaDaMatrizDoComecoAoFim] == 'F' && receberMatriz[linhaDaMatriz+1, percorrerColunaDaMatrizDoFimAoComeco] == 'C')
+                        incrementarOnumeroDeConexoesFeitas++;
+                }
+            }
+            Console.WriteLine($"O total de conexoes foi de {incrementarOnumeroDeConexoesFeitas}");
+        }
+        public static int ValidarOantepenultimoComOsegundoCaracter(char[,] matriz)
+        {
+            int incrementarContadorDeValidação = 0;
+            int pegarUltimaLinhaDaMatriz = matriz.GetLength(0)-1;
+
+            if (matriz[0, 2] == 'S' && matriz[pegarUltimaLinhaDaMatriz, 1] == 'B' || matriz[0, 2] == 'B' && matriz[pegarUltimaLinhaDaMatriz, 1] == 'S')
+                incrementarContadorDeValidação++;
+
+            else if (matriz[0, 2] == 'C' && matriz[pegarUltimaLinhaDaMatriz, 1] == 'F' || matriz[0, 2] == 'F' && matriz[pegarUltimaLinhaDaMatriz, 1] == 'C')
+                incrementarContadorDeValidação++;
+
+            return incrementarContadorDeValidação;
+        }
     }
 }
 
